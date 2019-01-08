@@ -8,6 +8,10 @@ public class FourierTransform{
      * @param a and b original image dimensions
      *        image input image from pgm file
      */
+
+    // Scalar value for spectrum output. The output will be the Log of the magnitude spectrum multiplied by this scalar value.
+    private static final int SCALAR = 5;
+
     public static int[][] dft(int[][] image, int a, int b){
 
         int M = (2*a-1); // get padded image dimensions M and N
@@ -85,7 +89,7 @@ public class FourierTransform{
         for(int i = 0; i < M; i++){
             for(int j = 0; j < N; j++){
                 //Log multiplied by scalar value to improve visibility of spectrum in output
-                spectrum[i][j] = 5*((int) Math.log(Math.pow( (Math.pow(real[i][j], 2) + Math.pow(imaginary[i][j], 2) ), 0.5)));
+                spectrum[i][j] = SCALAR*((int) Math.log(Math.pow( (Math.pow(real[i][j], 2) + Math.pow(imaginary[i][j], 2) ), 0.5)));
             }
         }
         return spectrum;
