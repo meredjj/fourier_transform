@@ -14,7 +14,7 @@ import java.io.IOException;
 public class FourierTransformTest{
     public static void main(String args[]){
             try{
-                System.out.printn("Processing input image...");
+                System.out.println("Processing input image...");
 
                 //Create input and output files
                 File input = new File("Knee.pgm");
@@ -30,7 +30,7 @@ public class FourierTransformTest{
                 PGMIO.write(image, output);
 
                 System.out.println("Done.");
-                
+
             }catch(IOException e){
                 System.out.println(e.getMessage());
             }
