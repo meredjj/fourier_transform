@@ -94,4 +94,28 @@ public class FourierTransform{
         }
         return spectrum;
     }
+
+    /*
+    * Ideal low pass filter for image blurring
+    * This filter will only allow signals below a certain frequency to pass and will eliminate others
+    * The result is a blurred image
+    * TODO: Fix dft function to allow use of the ilpf function
+    */
+    private static void ilpf(double [][]r, double [][]im, int cutoff, int M, int N){
+
+        double currentDistance;
+        for(int i = 0; i < M; i++){
+          for(int j = 0; j < N; j++){
+
+            //Get current distance using formula that computes distance from the center of a circle
+            currentDistance = pow( (pow((i-M/2),2) + pow((j-N/2),2)) , 0.5);
+
+            //eliminate this pixel value if it is above the frequency cutoff
+            if(currentDistance > cutoff){
+              r[M*j+i] = 0;
+              im[M*j+i] = 0;
+            }
+          }
+        }
+      }
 }
