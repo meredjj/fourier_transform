@@ -14,8 +14,6 @@ public class FourierTransform{
         int N = (2*b-1);
 
         double[][] padded = new double[M][N];
-        double[][] dftReal = new double[M][N];
-        double[][] dftImag = new double[M][N];
         int[][] spectrum = new int[M][N];
 
         //Zero padding the input image
