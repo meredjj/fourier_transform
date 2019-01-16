@@ -92,12 +92,19 @@ public class FourierTransform{
 
         //spectrum storage
         int[][] spectrum = new int[M][N];
-
+        int temp;
         //Calculate magnitude spectrum of the Fourier Transform
         for(int i = 0; i < M; i++){
             for(int j = 0; j < N; j++){
                 //Log multiplied by scalar value to improve visibility of spectrum in output
-                spectrum[i][j] = SCALAR*((int) Math.log(Math.pow( (Math.pow(real[i][j], 2) + Math.pow(imaginary[i][j], 2) ), 0.5)));
+                temp = SCALAR*((int) Math.log(Math.pow( (Math.pow(real[i][j], 2) + Math.pow(imaginary[i][j], 2) ), 0.5)));
+                if(temp > 255){
+                    spectrum[i][j] = 255;
+                }else if(temp < 0){
+                    spectrum[i][j] = 0;
+                }else{
+                    spectrum[i][j] = temp;
+                }
             }
         }
         return spectrum;
@@ -112,7 +119,7 @@ public class FourierTransform{
 
         int M = inputDFT.get(0).length;
         int N = inputDFT.get(0)[0].length;
-        
+
         double currentDistance;
         for(int i = 0; i < M; i++){
           for(int j = 0; j < N; j++){
