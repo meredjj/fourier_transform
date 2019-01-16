@@ -32,11 +32,11 @@ public class FourierTransformTest{
                 transform = FourierTransform.dft(image, image.length, image[0].length);
                 System.out.println("DFT complete.");
 
-                System.out.println("Applying Ideal Low-Pass Filter.");
-                transform = FourierTransform.ilpf(transform, 100);
-                System.out.println("Applied Filter.");
+                System.out.println("Applying ideal low-pass filter.");
+                transform = FourierTransform.ilpf(transform, 225);
+                System.out.println("Applied filter.");
                 
-                System.out.println("Computing Spectrum.");
+                System.out.println("Computing spectrum.");
                 spectrum = FourierTransform.getFourierSpectrum(transform);
                 System.out.println("Spectrum complete.");
 
