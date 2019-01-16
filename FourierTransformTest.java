@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *  Tester for the FourierTransform class. 
@@ -23,16 +24,29 @@ public class FourierTransformTest{
                 //Create input image as 2D array from PGM read
                 int[][] image =  PGMIO.read(input);
                 
+                ArrayList<double[][]> transform;
+                int[][] spectrum;
+                
                 //Run DFT algorithm on input image
-                image = FourierTransform.dft(image, image.length, image[0].length);
+                System.out.println("Starting DFT.");
+                transform = FourierTransform.dft(image, image.length, image[0].length);
+                System.out.println("DFT complete.");
+
+                System.out.println("Applying Ideal Low-Pass Filter.");
+                transform = FourierTransform.ilpf(transform, 100);
+                System.out.println("Applied Filter.");
+                
+                System.out.println("Computing Spectrum.");
+                spectrum = FourierTransform.getFourierSpectrum(transform);
+                System.out.println("Spectrum complete.");
 
                 //Write output image
-                PGMIO.write(image, output);
+                PGMIO.write(spectrum, output);
 
                 System.out.println("Done.");
 
             }catch(IOException e){
-                System.out.println(e.getMessage());
+                System.out.println("Terminated: " + e.getMessage());
             }
 
     }
