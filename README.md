@@ -1,4 +1,4 @@
-# image_processing
+# fourier_transform
 
 This was an academic project for an image processing course.
 
